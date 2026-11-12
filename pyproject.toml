@@ -1,0 +1,38 @@
+[project]
+name = "bayesian"
+version = "0.1.0"
+description = "Bayesian statistics experiments"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+  "pymc~=6.4"
+]
+
+[dependency-groups]
+dev = [
+  "coveralls",
+  "hypothesis",
+  "ipykernel",
+  "pre-commit",
+  "pytest-benchmark",
+  "pytest-cov",
+  "pytest-asyncio",
+  "pytest",
+  "pytest-xdist",
+  "ruff",
+  "ty",
+]
+
+[tool.uv]
+package = true
+
+[tool.ruff]
+lint.extend-select = ["I"]
+
+[tool.pytest.ini_options]
+addopts = "-n auto --hypothesis-profile=ci --benchmark-disable --cov=src/bayesian --cov-report=term --cov-report=html"
+testpaths = ["tests"]
+markers = ["integration: integration tests"]
+
+[tool.coverage]
+html.directory = ".htmlcov"
